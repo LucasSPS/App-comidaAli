@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /chats/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /users/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /ads/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /chat_messages/{document} {
+      allow create: if /databases/$(database)/documents/users/$(request.auth.uid) in get(request.resource.data.chat).data.users
+&& /databases/$(database)/documents/users/$(request.auth.uid) == request.resource.data.user;
+      allow read: if /databases/$(database)/documents/users/$(request.auth.uid) in get(resource.data.chat).data.users;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /reservations/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBOfoQP0Vs5mS4MWQ9Sr8uFOGMdU3YH2JQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>389305611943</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.lucas.comidaali</string>
+	<key>PROJECT_ID</key>
+	<string>project-comida-ali-uw2c60</string>
+	<key>STORAGE_BUCKET</key>
+	<string>project-comida-ali-uw2c60.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:389305611943:ios:1e1339534be16e32b80d82</string>
+</dict>
+</plist>

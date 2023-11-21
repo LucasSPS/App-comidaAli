@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "389305611943",
+    "project_id": "project-comida-ali-uw2c60",
+    "storage_bucket": "project-comida-ali-uw2c60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389305611943:android:fea2dddb34a75e36b80d82",
+        "android_client_info": {
+          "package_name": "com.lucas.comidaali"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATUDWm5Z_RUUvl-RmPDlx1nCS9gpwyb1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
