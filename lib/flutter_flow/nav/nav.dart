@@ -216,6 +216,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'ChatsArchieved',
               path: 'chatsArchieved',
               builder: (context, params) => ChatsArchievedWidget(),
+            ),
+            FFRoute(
+              name: 'myAdsCopy',
+              path: 'myAdsCopy',
+              builder: (context, params) => MyAdsCopyWidget(),
+            ),
+            FFRoute(
+              name: 'myOrdersCopy',
+              path: 'myOrdersCopy',
+              builder: (context, params) => MyOrdersCopyWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

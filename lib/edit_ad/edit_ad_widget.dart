@@ -1329,70 +1329,44 @@ class _EditAdWidgetState extends State<EditAdWidget> {
                                       Align(
                                         alignment:
                                             AlignmentDirectional(-0.98, 0.00),
-                                        child: FutureBuilder<ApiCallResponse>(
-                                          future: GetAdressCall.call(
-                                            latLng: _model
-                                                .placePickerValue.latLng
-                                                ?.toString(),
-                                          ),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50.0,
-                                                  height: 50.0,
-                                                  child: SpinKitThreeBounce(
-                                                    color: Color(0xFFB0B2B7),
-                                                    size: 50.0,
-                                                  ),
-                                                ),
-                                              );
-                                            }
-                                            final placePickerGetAdressResponse =
-                                                snapshot.data!;
-                                            return FlutterFlowPlacePicker(
-                                              iOSGoogleMapsApiKey:
-                                                  'AIzaSyDc5PtZ2h-HLrRIhl4xl6OCVV0LqaXNBZ8',
-                                              androidGoogleMapsApiKey:
-                                                  'AIzaSyD5zSsgWzpFWT_I4Gcm8yX37MHlUnz9K9Y',
-                                              webGoogleMapsApiKey:
-                                                  'AIzaSyDNqGM8G6F1Ohkh_XSkMak5c1Bk0VWwGUU',
-                                              onSelect: (place) async {
-                                                setState(() => _model
-                                                    .placePickerValue = place);
-                                              },
-                                              defaultText:
-                                                  'Selecionar localização',
-                                              icon: Icon(
-                                                Icons.place,
-                                                size: 16.0,
-                                              ),
-                                              buttonOptions: FFButtonOptions(
-                                                width: 200.0,
-                                                height: 35.0,
-                                                color: Colors.transparent,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily: 'Outfit',
-                                                          color:
-                                                              Color(0x00EB4F4F),
-                                                          fontSize: 14.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                                elevation: 0.0,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                            );
+                                        child: FlutterFlowPlacePicker(
+                                          iOSGoogleMapsApiKey:
+                                              'AIzaSyDc5PtZ2h-HLrRIhl4xl6OCVV0LqaXNBZ8',
+                                          androidGoogleMapsApiKey:
+                                              'AIzaSyD5zSsgWzpFWT_I4Gcm8yX37MHlUnz9K9Y',
+                                          webGoogleMapsApiKey:
+                                              'AIzaSyDNqGM8G6F1Ohkh_XSkMak5c1Bk0VWwGUU',
+                                          onSelect: (place) async {
+                                            setState(() => _model
+                                                .placePickerValue = place);
                                           },
+                                          defaultText: 'Selecionar localização',
+                                          icon: Icon(
+                                            Icons.place,
+                                            size: 16.0,
+                                          ),
+                                          buttonOptions: FFButtonOptions(
+                                            width: 200.0,
+                                            height: 35.0,
+                                            color: Colors.transparent,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily: 'Outfit',
+                                                      color: Color(0x00EB4F4F),
+                                                      fontSize: 14.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
+                                            elevation: 0.0,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                          ),
                                         ),
                                       ),
                                     ],

@@ -293,23 +293,6 @@ class _ConfirmReservationWidgetState extends State<ConfirmReservationWidget> {
                                 },
                               );
                             } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Inerido com sucesso!',
-                                    style: GoogleFonts.getFont(
-                                      'Outfit',
-                                      color: FlutterFlowTheme.of(context)
-                                          .customColor3,
-                                      fontSize: 12.0,
-                                    ),
-                                  ),
-                                  duration: Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                ),
-                              );
-
                               await ReservationsRecord.collection.doc().set({
                                 ...createReservationsRecordData(
                                   item: widget.ad?.reference,
@@ -327,16 +310,51 @@ class _ConfirmReservationWidgetState extends State<ConfirmReservationWidget> {
                                   },
                                 ),
                               });
+                              if (functions.isEmptyQuantity(
+                                      widget.ad!.quantity,
+                                      functions.convertStringToDouble(
+                                          _model.textController.text)) ==
+                                  true) {
+                                await widget.ad!.reference.update({
+                                  ...createAdsRecordData(
+                                    visibleStatus: false,
+                                  ),
+                                  ...mapToFirestore(
+                                    {
+                                      'quantity': FieldValue.increment(
+                                          -(int.parse(
+                                              _model.textController.text))),
+                                    },
+                                  ),
+                                });
+                              } else {
+                                await widget.ad!.reference.update({
+                                  ...mapToFirestore(
+                                    {
+                                      'quantity': FieldValue.increment(
+                                          -(int.parse(
+                                              _model.textController.text))),
+                                    },
+                                  ),
+                                });
+                              }
 
-                              await widget.ad!.reference.update({
-                                ...mapToFirestore(
-                                  {
-                                    'quantity': FieldValue.increment(
-                                        -(int.parse(
-                                            _model.textController.text))),
-                                  },
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Inserido com sucesso!',
+                                    style: GoogleFonts.getFont(
+                                      'Outfit',
+                                      color: FlutterFlowTheme.of(context)
+                                          .customColor3,
+                                      fontSize: 12.0,
+                                    ),
+                                  ),
+                                  duration: Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).primary,
                                 ),
-                              });
+                              );
                               Navigator.pop(context);
                             }
                           },

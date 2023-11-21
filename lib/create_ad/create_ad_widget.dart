@@ -772,6 +772,16 @@ class _CreateAdWidgetState extends State<CreateAdWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ),
+                                    Text(
+                                      ' (Ex: 2,50)',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Outfit',
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -787,36 +797,11 @@ class _CreateAdWidgetState extends State<CreateAdWidget> {
                                             _model.textFieldCostController,
                                         focusNode:
                                             _model.textFieldCostFocusNode,
-                                        onChanged: (_) => EasyDebounce.debounce(
-                                          '_model.textFieldCostController',
-                                          Duration(milliseconds: 2000),
-                                          () => setState(() {}),
-                                        ),
                                         textCapitalization:
                                             TextCapitalization.none,
+                                        textInputAction: TextInputAction.next,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodySmall
-                                                  .override(
-                                                    fontFamily: 'Outfit',
-                                                    color: Color(0xFF57636C),
-                                                    fontSize: 12.0,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                          hintStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Montserrat',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                fontSize: 12.0,
-                                                fontWeight: FontWeight.normal,
-                                              ),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
@@ -861,24 +846,6 @@ class _CreateAdWidgetState extends State<CreateAdWidget> {
                                           contentPadding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 16.0, 0.0, 0.0),
-                                          suffixIcon: _model
-                                                  .textFieldCostController!
-                                                  .text
-                                                  .isNotEmpty
-                                              ? InkWell(
-                                                  onTap: () async {
-                                                    _model
-                                                        .textFieldCostController
-                                                        ?.clear();
-                                                    setState(() {});
-                                                  },
-                                                  child: Icon(
-                                                    Icons.clear,
-                                                    color: Color(0xFFED0E0E),
-                                                    size: 20.0,
-                                                  ),
-                                                )
-                                              : null,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -890,10 +857,15 @@ class _CreateAdWidgetState extends State<CreateAdWidget> {
                                               fontSize: 12.0,
                                               fontWeight: FontWeight.normal,
                                             ),
-                                        keyboardType: TextInputType.number,
+                                        keyboardType: const TextInputType
+                                            .numberWithOptions(decimal: true),
                                         validator: _model
                                             .textFieldCostControllerValidator
                                             .asValidator(context),
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.allow(
+                                              RegExp('^\\d{1,4}(,\\d{2})?\$'))
+                                        ],
                                       ),
                                     ),
                                     Padding(

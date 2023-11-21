@@ -103,3 +103,14 @@ String moneyFormat(double price) {
   final format = NumberFormat("#,##0.00", "pt_BR");
   return "R\$ ${format.format(price)}";
 }
+
+bool isEmptyQuantity(
+  int defaultQuantity,
+  double valueDecrese,
+) {
+  if (defaultQuantity - valueDecrese == 0) {
+    return true;
+  } else {
+    return false;
+  }
+}

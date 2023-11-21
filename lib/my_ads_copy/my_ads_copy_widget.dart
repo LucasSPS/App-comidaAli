@@ -1,37 +1,40 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/delete_or_disable_widget.dart';
-import '/components/empty_list_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'my_ads_model.dart';
-export 'my_ads_model.dart';
+import 'my_ads_copy_model.dart';
+export 'my_ads_copy_model.dart';
 
-class MyAdsWidget extends StatefulWidget {
-  const MyAdsWidget({Key? key}) : super(key: key);
+class MyAdsCopyWidget extends StatefulWidget {
+  const MyAdsCopyWidget({Key? key}) : super(key: key);
 
   @override
-  _MyAdsWidgetState createState() => _MyAdsWidgetState();
+  _MyAdsCopyWidgetState createState() => _MyAdsCopyWidgetState();
 }
 
-class _MyAdsWidgetState extends State<MyAdsWidget> {
-  late MyAdsModel _model;
+class _MyAdsCopyWidgetState extends State<MyAdsCopyWidget> {
+  late MyAdsCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => MyAdsModel());
+    _model = createModel(context, () => MyAdsCopyModel());
+
+    _model.textController ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -112,6 +115,105 @@ class _MyAdsWidgetState extends State<MyAdsWidget> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                  child: TextFormField(
+                    controller: _model.textController,
+                    focusNode: _model.textFieldFocusNode,
+                    onChanged: (_) => EasyDebounce.debounce(
+                      '_model.textController',
+                      Duration(milliseconds: 2000),
+                      () => setState(() {}),
+                    ),
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: 'Search products...',
+                      labelStyle:
+                          FlutterFlowTheme.of(context).bodySmall.override(
+                                fontFamily: 'Outfit',
+                                color: Color(0xFF57636C),
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.normal,
+                              ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
+                      prefixIcon: Icon(
+                        Icons.search_rounded,
+                        color: Color(0xFF57636C),
+                      ),
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Montserrat',
+                          color: Color(0xFF14181B),
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.normal,
+                        ),
+                    maxLines: null,
+                    validator:
+                        _model.textControllerValidator.asValidator(context),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                        child: Text(
+                          'Categorias',
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Outfit',
+                                    color: Color(0xFF788895),
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                        ),
+                      ),
+                      Text(
+                        'See All',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Outfit',
+                              color: Color(0xFF14181B),
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.normal,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
                 Expanded(
                   child: Padding(
                     padding:
@@ -143,12 +245,6 @@ class _MyAdsWidgetState extends State<MyAdsWidget> {
                           );
                         }
                         List<AdsRecord> listViewAdsRecordList = snapshot.data!;
-                        if (listViewAdsRecordList.isEmpty) {
-                          return EmptyListWidget(
-                            secondString:
-                                'Insira anúncios e eles apareceram aqui',
-                          );
-                        }
                         return ListView.builder(
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,

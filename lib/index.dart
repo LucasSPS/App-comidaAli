@@ -20,3 +20,5 @@ export '/forgot_password/forgot_password_widget.dart' show ForgotPasswordWidget;
 export '/forgot_password2/forgot_password2_widget.dart'
     show ForgotPassword2Widget;
 export '/chats_archieved/chats_archieved_widget.dart' show ChatsArchievedWidget;
+export '/my_ads_copy/my_ads_copy_widget.dart' show MyAdsCopyWidget;
+export '/my_orders_copy/my_orders_copy_widget.dart' show MyOrdersCopyWidget;

@@ -620,6 +620,14 @@ class _ChatPageSellerWidgetState extends State<ChatPageSellerWidget> {
                                                                   FFButtonWidget(
                                                                 onPressed:
                                                                     () async {
+                                                                  await columnHeaderMainAdsRecord
+                                                                      .reference
+                                                                      .update(
+                                                                          createAdsRecordData(
+                                                                    quantity:
+                                                                        columnReservationsQueryReservationsRecord
+                                                                            ?.quantity,
+                                                                  ));
                                                                   await columnReservationsQueryReservationsRecord!
                                                                       .reference
                                                                       .delete();

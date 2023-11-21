@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'dart:convert' show utf8;
+import 'package:permission_handler/permission_handler.dart';
 import 'package:download/download.dart';
+import 'package:path_provider/path_provider.dart';
 
 Future downloadCollectionAsCsv(List<AdsRecord>? myAds) async {
   myAds = myAds ?? [];
@@ -42,11 +44,27 @@ Future downloadCollectionAsCsv(List<AdsRecord>? myAds) async {
   //     DateFormat('HH:mm').format(record.timeIn!) +
   //     "," +
 
-  final fileName = "FF_" + "meusanuncios_" + DateTime.now().toString() + ".csv";
+  final fileName =
+      "/storage/emulated/0/Download/FF_meus_anuncios_${DateTime.now()}.csv";
+
+  // Check permissions
+  var status = await Permission.storage.status;
+  if (status != PermissionStatus.granted) {
+    await Permission.storage.request();
+  }
+
+  // Validate directory
+  var dir = await getApplicationDocumentsDirectory();
+  if (!dir.existsSync()) {
+    dir.createSync();
+  }
 
   // Encode the string as a List<int> of UTF-8 bytes
   var bytes = utf8.encode(fileContent);
 
-  final stream = Stream.fromIterable(bytes);
-  return download(stream, fileName);
+  // Print progress
+  var progress = 0;
+  var stream = Stream.fromIterable(bytes);
+  var result = await download(stream, fileName);
+  return result;
 }
