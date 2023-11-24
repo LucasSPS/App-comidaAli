@@ -712,7 +712,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               onTap: () async {
                                                 context.pushNamed(
                                                   'adMain',
+                                                  queryParameters: {
+                                                    'adDocument':
+                                                        serializeParam(
+                                                      listAdsDefaultItem,
+                                                      ParamType.Document,
+                                                    ),
+                                                  }.withoutNulls,
                                                   extra: <String, dynamic>{
+                                                    'adDocument':
+                                                        listAdsDefaultItem,
                                                     kTransitionInfoKey:
                                                         TransitionInfo(
                                                       hasTransition: true,
@@ -1220,7 +1229,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               onTap: () async {
                                                 context.pushNamed(
                                                   'adMain',
+                                                  queryParameters: {
+                                                    'adDocument':
+                                                        serializeParam(
+                                                      listAdsFilterItem,
+                                                      ParamType.Document,
+                                                    ),
+                                                  }.withoutNulls,
                                                   extra: <String, dynamic>{
+                                                    'adDocument':
+                                                        listAdsFilterItem,
                                                     kTransitionInfoKey:
                                                         TransitionInfo(
                                                       hasTransition: true,
@@ -1731,7 +1749,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               onTap: () async {
                                                 context.pushNamed(
                                                   'adMain',
+                                                  queryParameters: {
+                                                    'adDocument':
+                                                        serializeParam(
+                                                      listAdsSearchItem,
+                                                      ParamType.Document,
+                                                    ),
+                                                  }.withoutNulls,
                                                   extra: <String, dynamic>{
+                                                    'adDocument':
+                                                        listAdsSearchItem,
                                                     kTransitionInfoKey:
                                                         TransitionInfo(
                                                       hasTransition: true,
