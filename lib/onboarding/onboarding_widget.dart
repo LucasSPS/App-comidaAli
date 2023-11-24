@@ -200,7 +200,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.95,
-                                          height: 2.0,
+                                          height: 290.0,
                                           fit: BoxFit.contain,
                                         ),
                                       ],
