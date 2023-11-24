@@ -21,10 +21,7 @@ import '../../flutter_flow/custom_functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
-bool emailIsUsed(
-  List<UsersRecord> listUsers,
-  String? email,
-) {
+bool emailIsUsed(List<UsersRecord> listUsers, String? email) {
   /// MODIFY CODE ONLY BELOW THIS LINE
 
   // check if email is empty, bfore check if email entry exists in users

@@ -289,7 +289,7 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
                                                                         .title
                                                                         .maybeHandleOverflow(
                                                                       maxChars:
-                                                                          100,
+                                                                          30,
                                                                       replacement:
                                                                           '…',
                                                                     ),
@@ -304,146 +304,148 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
                                                                               12.0,
                                                                         ),
                                                                   ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            8.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        await showDialog(
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (alertDialogContext) {
-                                                                            return AlertDialog(
-                                                                              title: Text('oi'),
-                                                                              content: Text('oi'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: Text('Ok'),
-                                                                                ),
-                                                                              ],
-                                                                            );
-                                                                          },
-                                                                        );
-                                                                      },
-                                                                      child:
-                                                                          Container(
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              Color(0x42616161),
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(4.0),
-                                                                        ),
-                                                                        child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              2.0,
-                                                                              2.0,
-                                                                              2.0,
-                                                                              2.0),
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Icon(
-                                                                                  Icons.chat,
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  size: 16.0,
-                                                                                ),
-                                                                              ),
-                                                                              Text(
-                                                                                'Ver chat',
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Outfit',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
                                                                 ],
                                                               ),
                                                             ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           4.0,
                                                                           0.0,
                                                                           0.0),
-                                                              child: Container(
-                                                                height: 15.0,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
+                                                                  child:
+                                                                      Container(
+                                                                    height:
+                                                                        15.0,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondary,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
                                                                               8.0),
+                                                                    ),
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              4.0,
+                                                                              0.0,
+                                                                              4.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Text(
+                                                                            rowAdInfoAdsRecord.categorie,
+                                                                            maxLines:
+                                                                                1,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Outfit',
+                                                                                  fontSize: 10.0,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
                                                                 ),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .min,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .start,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          4.0,
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
                                                                           0.0,
-                                                                          4.0,
+                                                                          0.0,
                                                                           0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
+                                                                      context
+                                                                          .pushNamed(
+                                                                        'chatPage_Buyer',
+                                                                        queryParameters:
+                                                                            {
+                                                                          'chatRef':
+                                                                              serializeParam(
+                                                                            myReservationsItem.chatRef,
+                                                                            ParamType.DocumentReference,
+                                                                          ),
+                                                                        }.withoutNulls,
+                                                                      );
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: Color(
+                                                                            0x42616161),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(4.0),
+                                                                      ),
                                                                       child:
-                                                                          Text(
-                                                                        rowAdInfoAdsRecord
-                                                                            .categorie,
-                                                                        maxLines:
-                                                                            1,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Outfit',
-                                                                              fontSize: 10.0,
+                                                                          Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            2.0,
+                                                                            2.0,
+                                                                            2.0,
+                                                                            2.0),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
+                                                                              child: Icon(
+                                                                                Icons.chat,
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                                size: 16.0,
+                                                                              ),
                                                                             ),
+                                                                            Text(
+                                                                              'Ver chat',
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    fontFamily: 'Outfit',
+                                                                                    fontSize: 12.0,
+                                                                                  ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       ),
                                                                     ),
-                                                                  ],
+                                                                  ),
                                                                 ),
-                                                              ),
+                                                              ],
                                                             ),
                                                             Expanded(
                                                               child: Padding(

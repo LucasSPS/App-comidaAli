@@ -655,63 +655,175 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     List<UsersRecord> buttonUsersRecordList = snapshot.data!;
                     return FFButtonWidget(
                       onPressed: () async {
-                        if (currentUserPhoto != null &&
-                            currentUserPhoto != '') {
+                        var _shouldSetState = false;
+                        if (_model.yourEmailController.text !=
+                            currentUserEmail) {
+                          _model.emailError = await actions.emailIsUsed(
+                            buttonUsersRecordList.toList(),
+                            _model.yourEmailController.text,
+                          );
+                          _shouldSetState = true;
+                          if (_model.emailError!) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'E-mail já cadastrado ou incorreto!',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
+                            if (_shouldSetState) setState(() {});
+                            return;
+                          }
+                        }
+                        if ((_model.yourEmailController.text ==
+                                currentUserEmail) &&
+                            (_model.yourNameController.text ==
+                                currentUserDisplayName) &&
+                            (_model.uploadedFileUrl2 == null ||
+                                _model.uploadedFileUrl2 == '')) {
+                          if (_shouldSetState) setState(() {});
+                          return;
+                        }
+                        if ((_model.yourEmailController.text ==
+                                currentUserEmail) &&
+                            (_model.yourNameController.text ==
+                                currentUserDisplayName) &&
+                            (_model.uploadedFileUrl2 != null &&
+                                _model.uploadedFileUrl2 != '')) {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                content: Text(_model.uploadedFileUrl2),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+
+                          await currentUserReference!
+                              .update(createUsersRecordData(
+                            photoUrl: _model.uploadedFileUrl2,
+                          ));
+
+                          await currentUserReference!
+                              .update(createUsersRecordData(
+                            photoUrl: _model.uploadedFileUrl2,
+                          ));
+                        } else if ((_model.yourEmailController.text ==
+                                currentUserEmail) &&
+                            (_model.yourNameController.text !=
+                                currentUserDisplayName) &&
+                            (_model.uploadedFileUrl2 == null ||
+                                _model.uploadedFileUrl2 == '')) {
+                          await currentUserReference!
+                              .update(createUsersRecordData(
+                            displayName: _model.yourNameController.text,
+                          ));
+                        } else if ((_model.yourEmailController.text ==
+                                currentUserEmail) &&
+                            (_model.yourNameController.text !=
+                                currentUserDisplayName) &&
+                            (_model.uploadedFileUrl2 != null &&
+                                _model.uploadedFileUrl2 != '')) {
                           await FirebaseStorage.instance
                               .refFromURL(currentUserPhoto)
                               .delete();
-                        }
-                        _model.emailError = await actions.emailIsUsed(
-                          buttonUsersRecordList.toList(),
-                          _model.yourEmailController.text,
-                        );
-                        if (_model.emailError!) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'E-mail já cadastrado ou incorreto!',
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                              duration: Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                            ),
-                          );
-                        } else {
+
                           await currentUserReference!
                               .update(createUsersRecordData(
-                            email: _model.yourEmailController.text,
-                            displayName: _model.yourNameController.text,
                             photoUrl: _model.uploadedFileUrl2 != null &&
                                     _model.uploadedFileUrl2 != ''
                                 ? _model.uploadedFileUrl2
                                 : _model.uploadedFileUrl1,
-                            uid: '',
+                            displayName: _model.yourNameController.text,
                           ));
-                          if (_model.yourEmailController.text.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Email required!',
-                                ),
-                              ),
-                            );
-                            return;
-                          }
-
-                          await authManager.updateEmail(
+                        } else if ((_model.yourEmailController.text !=
+                                currentUserEmail) &&
+                            (_model.yourNameController.text ==
+                                currentUserDisplayName) &&
+                            (_model.uploadedFileUrl2 == null ||
+                                _model.uploadedFileUrl2 == '')) {
+                          await currentUserReference!
+                              .update(createUsersRecordData(
                             email: _model.yourEmailController.text,
-                            context: context,
-                          );
-                          setState(() {});
+                          ));
+                        } else if ((_model.yourEmailController.text !=
+                                currentUserEmail) &&
+                            (_model.yourNameController.text ==
+                                currentUserDisplayName) &&
+                            (_model.uploadedFileUrl2 != null &&
+                                _model.uploadedFileUrl2 != '')) {
+                          await FirebaseStorage.instance
+                              .refFromURL(currentUserPhoto)
+                              .delete();
 
-                          context.pop();
+                          await currentUserReference!
+                              .update(createUsersRecordData(
+                            photoUrl: _model.uploadedFileUrl2 != null &&
+                                    _model.uploadedFileUrl2 != ''
+                                ? _model.uploadedFileUrl2
+                                : _model.uploadedFileUrl1,
+                            email: _model.yourEmailController.text,
+                          ));
+                        } else if ((_model.yourEmailController.text !=
+                                currentUserEmail) &&
+                            (_model.yourNameController.text !=
+                                currentUserDisplayName) &&
+                            (_model.uploadedFileUrl2 == null ||
+                                _model.uploadedFileUrl2 == '')) {
+                          await currentUserReference!
+                              .update(createUsersRecordData(
+                            displayName: _model.yourNameController.text,
+                            email: _model.yourEmailController.text,
+                          ));
+                        } else {
+                          await FirebaseStorage.instance
+                              .refFromURL(currentUserPhoto)
+                              .delete();
+
+                          await currentUserReference!
+                              .update(createUsersRecordData(
+                            photoUrl: _model.uploadedFileUrl2 != null &&
+                                    _model.uploadedFileUrl2 != ''
+                                ? _model.uploadedFileUrl2
+                                : _model.uploadedFileUrl1,
+                            email: _model.yourEmailController.text,
+                            displayName: _model.yourNameController.text,
+                          ));
                         }
 
-                        setState(() {});
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              content: Text('Fim'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('Ok'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+
+                        context.goNamed('profileMain');
+
+                        if (_shouldSetState) setState(() {});
                       },
                       text: 'Salvar mudanças',
                       options: FFButtonOptions(
