@@ -1,0 +1,29 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="io.flutter.plugins.firebase.performance" >
+4
+5    <uses-sdk
+6        android:minSdkVersion="16"
+6-->C:\Users\lucas\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_performance-0.9.2+2\android\src\main\AndroidManifest.xml
+7        android:targetSdkVersion="16" />
+7-->C:\Users\lucas\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_performance-0.9.2+2\android\src\main\AndroidManifest.xml
+8
+9    <uses-permission android:name="android.permission.INTERNET" />
+9-->C:\Users\lucas\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_performance-0.9.2+2\android\src\main\AndroidManifest.xml:4:3-65
+9-->C:\Users\lucas\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_performance-0.9.2+2\android\src\main\AndroidManifest.xml:4:20-62
+10
+11    <application>
+11-->C:\Users\lucas\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_performance-0.9.2+2\android\src\main\AndroidManifest.xml:5:3-10:17
+12        <service android:name="com.google.firebase.components.ComponentDiscoveryService" >
+12-->C:\Users\lucas\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_performance-0.9.2+2\android\src\main\AndroidManifest.xml:6:5-9:15
+12-->C:\Users\lucas\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_performance-0.9.2+2\android\src\main\AndroidManifest.xml:6:14-85
+13            <meta-data
+13-->C:\Users\lucas\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_performance-0.9.2+2\android\src\main\AndroidManifest.xml:7:7-8:86
+14                android:name="com.google.firebase.components:io.flutter.plugins.firebase.performance.FlutterFirebaseAppRegistrar"
+14-->C:\Users\lucas\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_performance-0.9.2+2\android\src\main\AndroidManifest.xml:7:18-131
+15                android:value="com.google.firebase.components.ComponentRegistrar" />
+15-->C:\Users\lucas\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_performance-0.9.2+2\android\src\main\AndroidManifest.xml:8:18-83
+16        </service>
+17    </application>
+18
+19</manifest>

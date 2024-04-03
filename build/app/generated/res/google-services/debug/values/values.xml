@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">389305611943</string>
+    <string name="google_api_key" translatable="false">AIzaSyATUDWm5Z_RUUvl-RmPDlx1nCS9gpwyb1U</string>
+    <string name="google_app_id" translatable="false">1:389305611943:android:fea2dddb34a75e36b80d82</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyATUDWm5Z_RUUvl-RmPDlx1nCS9gpwyb1U</string>
+    <string name="google_storage_bucket" translatable="false">project-comida-ali-uw2c60.appspot.com</string>
+    <string name="project_id" translatable="false">project-comida-ali-uw2c60</string>
+</resources>
